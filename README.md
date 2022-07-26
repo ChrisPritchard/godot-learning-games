@@ -6,4 +6,4 @@ Games I have made while learning [Godot](https://godotengine.org/) (pronounced '
 
 ## Project details
 
-[dodge-the-creeps](./dodge-the-creeps/) is based on the [your first 2D game tutorial](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html). I managed to make it in around an 70 minutes (an hour 10), showing the simplicity of the engine, given this was the first time I used it.
+[dodge-the-creeps](./dodge-the-creeps/) is based on the [your first 2D game tutorial](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html). I managed to make it in around an 70 minutes (an hour 10), showing the simplicity of the engine, given this was the first time I had ever used Godot.
