@@ -10,3 +10,6 @@ func pickup():
 
 func _on_Tween_tween_completed(object, key):
 	queue_free()
+
+func _on_Lifetime_timeout():
+	queue_free()
