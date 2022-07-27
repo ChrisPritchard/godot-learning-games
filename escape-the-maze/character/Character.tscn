@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Character.gd" type="Script" id=1]
+[ext_resource path="res://character/Character.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -49,7 +49,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 4, 5, 6, 7, 8 ]
+"values": [ 5, 6, 7, 8, 9 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -81,7 +81,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 14, 15, 16, 17, 18 ]
+"values": [ 15, 16, 17, 18, 19 ]
 }
 
 [node name="Character" type="Area2D"]
@@ -89,6 +89,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+speed = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 hframes = 5
