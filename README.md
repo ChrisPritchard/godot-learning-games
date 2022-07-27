@@ -2,7 +2,7 @@
 
 Games I have made while learning [Godot](https://godotengine.org/) (pronounced 'GOD OH' - I need to practice this)
 
-> For these I have elected to use GDScript as the primary language, as opposed to C# or something using GDNative (e.g. Go). Reasoning being that while I am a very proficient C# developer, I enjoy learning something new. GDScript seems a little cleaner, better documented, more popular, and so ticks all the boxes.
+> For these I have elected to use **GDScript** as the primary language, as opposed to **C#** or something using **GDNative** (e.g. Go). Reasoning being that while I am a very proficient C# developer, I enjoy learning something new. GDScript seems a little cleaner, better documented, more popular, and so ticks all the boxes.
 
 ## Project details
 
