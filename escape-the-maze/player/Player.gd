@@ -18,6 +18,8 @@ func _on_Player_area_entered(area):
 	if area.has_method("pickup"):
 		area.pickup()
 	if area.type == "key_red":
-		emit_signal("has_key")
+		emit_signal("has_key", "red")
+	if area.type == "key_green":
+		emit_signal("has_key", "green")
 	if area.type == "star":
 		emit_signal("win")
