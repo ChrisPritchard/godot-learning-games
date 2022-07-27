@@ -33,6 +33,7 @@ func spawn_coins():
 	for i in range(4 + level):
 		var c = coin.instance()
 		$CoinContainer.add_child(c)
+		c.screen_size = screen_size
 		c.position = Vector2(rand_range(0, screen_size.x), rand_range(0, screen_size.y))
 
 func _process(delta):
@@ -78,4 +79,5 @@ func _on_HUD_start_game():
 func _on_PowerupTimer_timeout():
 	var p = powerup.instance()
 	add_child(p)
+	p.screen_size = screen_size
 	p.position = Vector2(rand_range(0, screen_size.x), rand_range(0, screen_size.y))

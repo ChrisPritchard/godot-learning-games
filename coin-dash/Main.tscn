@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/grass.png" type="Texture" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/audio/Hit.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/audio/Powerup.wav" type="AudioStream" id=9]
 [ext_resource path="res://Powerup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Cactus.tscn" type="PackedScene" id=11]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -23,7 +24,19 @@ anchor_bottom = 1.0
 texture = ExtResource( 1 )
 stretch_mode = 2
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Cactus" parent="." instance=ExtResource( 11 )]
+position = Vector2( 103, 96 )
+
+[node name="Cactus2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 361, 520 )
+
+[node name="Cactus3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 95, 518 )
+
+[node name="Cactus4" parent="." instance=ExtResource( 11 )]
+position = Vector2( 356, 98 )
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource( 2 )]
 scale = Vector2( 2, 2 )
 
 [node name="CoinContainer" type="Node" parent="."]

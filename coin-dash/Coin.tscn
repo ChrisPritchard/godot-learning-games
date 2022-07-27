@@ -16,7 +16,7 @@
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 1 ) ],
-"loop": true,
+"loop": false,
 "name": "default",
 "speed": 12.0
 } ]
@@ -30,7 +30,7 @@ script = ExtResource( 12 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-frame = 7
+frame = 10
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -38,4 +38,8 @@ shape = SubResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
 
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_Coin_area_entered"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
