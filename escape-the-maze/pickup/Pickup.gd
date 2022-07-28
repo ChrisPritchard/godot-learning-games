@@ -9,8 +9,8 @@ var textures = {
 var type
 
 func _ready():
-	$Tween.interpolate_property($AnimatedSprite, "scale", $AnimatedSprite.scale, $AnimatedSprite.scale * 3, 0.3, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-	$Tween.interpolate_property($AnimatedSprite, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.3, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, $Sprite.scale * 3, 0.3, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property($Sprite, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.3, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	
 func init(_type, pos):
 	$Sprite.texture = load(textures[_type])
