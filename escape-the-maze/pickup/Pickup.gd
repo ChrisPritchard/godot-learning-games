@@ -18,8 +18,8 @@ func init(_type, pos):
 	position = pos
 	
 func pickup():
-	$CollisionShape2D.disabled = true
-	$Tween.start
+	$CollisionShape2D.set_deferred("disabled", true)
+	$Tween.start()
 
 func _on_Tween_tween_completed(object, key):
 	queue_free()
