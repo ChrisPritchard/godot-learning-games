@@ -57,12 +57,15 @@ func spawn_items():
 				add_child(p)
 
 func game_over():
+	print("player hit")
 	pass
 	
 func _on_Player_win():
+	print("player win")
 	pass
 	
 func _on_Player_grabbed_key(colour):
+	print("key grabbed")
 	if colour == "red":
 		for cell in red_doors:
 			$Walls.set_cellv(cell, -1)

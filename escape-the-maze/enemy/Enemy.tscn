@@ -6,7 +6,7 @@
 
 [node name="Enemy" groups=["enemies"] instance=ExtResource( 1 )]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 2
 script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
