@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
 anchor_right = 1.0
 margin_bottom = 252.0
 custom_fonts/font = SubResource( 1 )
@@ -20,7 +20,18 @@ text = "Escape the Maze!"
 align = 1
 valign = 1
 
-[node name="Label2" type="Label" parent="."]
+[node name="HighScore" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -37.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+text = "Escape the Maze!"
+align = 1
+valign = 1
+
+[node name="SpaceToStart" type="Label" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

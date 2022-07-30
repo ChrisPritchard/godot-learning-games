@@ -55,6 +55,7 @@ func spawn_items():
 				var p = Pickup.instance()
 				p.init(type, pos)
 				add_child(p)
+				p.connect("coin_pickup", $HUD, "update_score")
 
 func game_over():
 	Global.game_over()
