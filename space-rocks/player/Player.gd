@@ -11,9 +11,17 @@ var rotation_dir = 0
 
 var screensize = Vector2()
 
+signal shoot
+
+export (PackedScene) var Bullet
+export (float) var fire_rate = 0.25
+
+var can_shoot = true
+
 func _ready():
 	change_state(ALIVE)
 	screensize = get_viewport().get_visible_rect().size
+	$GunTimer.wait_time = fire_rate
 
 func change_state(new_state):
 	match new_state:
@@ -41,6 +49,15 @@ func get_input():
 		rotation_dir += 1
 	if Input.is_action_pressed("rotate_left"):
 		rotation_dir -= 1
+	if Input.is_action_pressed("shoot") and can_shoot:
+		shoot()
+		
+func shoot():
+	if state == INVULNERABLE:
+		return
+	emit_signal("shoot", Bullet, $Muzzle.global_position, rotation)
+	can_shoot = false
+	$GunTimer.start()
 		
 func _integrate_forces(physics_state):
 	set_applied_force(thrust.rotated(rotation))
@@ -55,3 +72,7 @@ func _integrate_forces(physics_state):
 	if xform.origin.y < 0:
 		xform.origin.y = screensize.y
 	physics_state.set_transform(xform)
+
+
+func _on_GunTimer_timeout():
+	can_shoot = true
