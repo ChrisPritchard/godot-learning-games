@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="escape-the-maze"
-run/main_scene="res://levels/Level2.tscn"
+run/main_scene="res://ui/StartScreen.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://Global.gd"
 
 [display]
 

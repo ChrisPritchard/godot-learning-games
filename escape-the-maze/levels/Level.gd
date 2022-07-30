@@ -57,12 +57,10 @@ func spawn_items():
 				add_child(p)
 
 func game_over():
-	print("player hit")
-	pass
+	Global.game_over()
 	
 func _on_Player_win():
-	print("player win")
-	pass
+	Global.next_level()
 	
 func _on_Player_grabbed_key(colour):
 	print("key grabbed")
