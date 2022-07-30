@@ -44,6 +44,17 @@ func spawn_rock(size, pos=null, vel=null):
 	r.connect("exploded", self, "_on_Rock_exploded")
 	$Rocks.add_child(r)
 
+func _input(event):
+	if event.is_action_pressed("pause"):
+		if not playing:
+			return
+		get_tree().paused = not get_tree().paused
+		if get_tree().paused:
+			$HUD/MessageLabel.text = "Paused"
+			$HUD/MessageLabel.show()
+		else:
+			$HUD/MessageLabel.hide()
+
 func _process(_delta):
 	if playing and $Rocks.get_child_count() == 0:
 		new_level()
