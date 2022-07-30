@@ -11,3 +11,5 @@ Games I have made while learning [Godot](https://godotengine.org/) (pronounced '
 The next few projects all come from the Pakt Publishing book: https://www.packtpub.com/product/godot-engine-game-development-projects/9781788831505. Building these are useful as they are for a slightly older version of Godot, meaning I needed to tweak and update as we go.
 
 - [coin-dash](./coin-dash/) is very similar to the 2D game tutorial - but chasing coins rather than avoiding creeps. It has a little more complexity (powerups for example, and obstacles) but is basically the same game.
+
+- [escape-the-maze](./escape-the-maze/) contains examples of inheritance, tilemap usage and a global autoload. One way this tutorial deviated from the book was that the way you create tilesets is more sophisticated as of Godot 3.4.4 - instead of making a bunch of sprites and then exporting, the tileset creation tool with its atlas and single tile editors made this quick and easy - though it did cause me to add colliders to something in error, which stumped me for a few days when I couldn't enter coin tiles for example.

@@ -23,6 +23,9 @@ func pickup():
 	match type:
 		"coin":
 			emit_signal("coin_pickup", 1)
+			$CoinPickup.play()
+		"key_red", "key_green":
+			$KeyPickup.play()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Tween.start()
 
