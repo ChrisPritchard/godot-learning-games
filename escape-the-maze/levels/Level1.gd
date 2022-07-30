@@ -23,9 +23,9 @@ func _ready():
 		
 	spawn_items()
 	
-	$Player.connect("dead", self, "game_over")
-	$Player.connect("grabbed_key", self, "_on_Player_grabbed_key")
-	$Player.connect("win", self, "_on_Player_win")
+	var _r = $Player.connect("dead", self, "game_over")
+	_r = $Player.connect("grabbed_key", self, "_on_Player_grabbed_key")
+	_r = $Player.connect("win", self, "_on_Player_win")
 
 func set_camera_limits():
 	var map_size = $Ground.get_used_rect()

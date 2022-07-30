@@ -104,25 +104,21 @@ shape = SubResource( 1 )
 enabled = true
 cast_to = Vector2( 64, 0 )
 collide_with_areas = true
-collide_with_bodies = false
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( -64, 0 )
 collide_with_areas = true
-collide_with_bodies = false
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 64 )
 collide_with_areas = true
-collide_with_bodies = false
 
 [node name="RayCastUp" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, -64 )
 collide_with_areas = true
-collide_with_bodies = false
 
 [node name="MoveTween" type="Tween" parent="."]
 

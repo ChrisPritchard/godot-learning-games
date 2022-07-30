@@ -5,7 +5,7 @@ signal dead
 signal grabbed_key
 signal win
 
-func _process(delta):
+func _process(_delta):
 	if can_move:
 		for dir in moves.keys():
 			if Input.is_action_pressed(dir):

@@ -21,6 +21,7 @@ onready var raycasts = {
 func move(dir):
 	$AnimationPlayer.playback_speed = speed
 	facing = dir
+	
 	if raycasts[facing].is_colliding():
 		return
 		
@@ -30,5 +31,5 @@ func move(dir):
 	$MoveTween.start()
 	return true
 
-func _on_MoveTween_tween_completed(object, key):
+func _on_MoveTween_tween_completed(_object, _key):
 	can_move = true
