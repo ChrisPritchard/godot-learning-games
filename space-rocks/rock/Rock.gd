@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+signal exploded
+
 var screensize = Vector2()
 var size
 var radius
@@ -15,10 +17,12 @@ func start(pos, vel, _size):
 	radius = int($Sprite.texture.get_size().x / 2 * scale_factor * size)
 	var shape = CircleShape2D.new()
 	shape.radius = radius
-	$CollisionShape2D.shape = shape
+	$CollisionShape2D.set_deferred("shape", shape)
 	
 	linear_velocity = vel
 	angular_velocity = rand_range(-1.5, 1.5)
+	
+	$Explosion.scale = Vector2(0.75, 0.75) * size
 
 func _integrate_forces(physics_state):
 	var xform = physics_state.get_transform()
@@ -31,3 +35,14 @@ func _integrate_forces(physics_state):
 	if xform.origin.y < 0 - radius:
 		xform.origin.y = screensize.y + radius
 	physics_state.set_transform(xform)
+
+func explode():
+	layers = 0
+	$Sprite.hide()
+	$Explosion.play()
+	emit_signal("exploded", size, radius, position, linear_velocity)
+	linear_velocity = Vector2()
+	angular_velocity = 0
+
+func _on_Explosion_animation_finished():
+	queue_free()
