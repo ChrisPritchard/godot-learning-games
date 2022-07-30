@@ -1,6 +1,7 @@
 extends Node
 
 export (PackedScene) var Rock
+export (PackedScene) var Enemy
 
 var screensize
 
@@ -31,6 +32,8 @@ func new_level():
 	$HUD.show_message("Wave %s" % level)
 	for _i in range(level):
 		spawn_rock(3)
+	$EnemyTimer.wait_time = rand_range(5, 10)
+	$EnemyTimer.start()
 		
 func spawn_rock(size, pos=null, vel=null):
 	if !pos:
@@ -79,3 +82,11 @@ func game_over():
 
 func _on_Player_lives_changed():
 	$HUD.update_lives($Player.lives)
+
+func _on_EnemyTimer_timeout():
+	var e = Enemy.instance()
+	add_child(e)
+	e.target = $Player
+	e.connect("shoot", self, "_on_Player_shoot")
+	$EnemyTimer.wait_time = rand_range(20, 40)
+	$EnemyTimer.start()

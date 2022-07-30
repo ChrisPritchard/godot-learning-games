@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/space_background.png" type="Texture" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://bullet/Bullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://rock/Rock.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://enemy/Enemy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -16,6 +17,7 @@ _data = {
 pause_mode = 2
 script = ExtResource( 3 )
 Rock = ExtResource( 5 )
+Enemy = ExtResource( 7 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 496, 306 )
@@ -37,7 +39,11 @@ pause_mode = 1
 [node name="HUD" parent="." instance=ExtResource( 6 )]
 pause_mode = 1
 
+[node name="EnemyTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="dead" from="Player" to="." method="game_over"]
 [connection signal="lives_changed" from="Player" to="." method="_on_Player_lives_changed"]
 [connection signal="shoot" from="Player" to="." method="_on_Player_shoot"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
