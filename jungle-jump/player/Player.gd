@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-export (int) var run_speed
-export (int) var jump_speed
-export (int) var gravity
+export (int) var run_speed = 100
+export (int) var jump_speed = -100
+export (int) var gravity = 100
 
 enum {IDLE,RUN,JUMP,HURT,DEAD}
 var state
@@ -35,12 +35,13 @@ func get_input():
 	var left = Input.is_action_pressed("left")
 	var jump = Input.is_action_just_pressed("jump")
 	
+	velocity.x = 0
 	if right:
 		velocity.x += run_speed
 		$AnimatedSprite.flip_h = false
 	if left:
 		velocity.x -= run_speed
-		$AnimatedSprite.flip_h = false
+		$AnimatedSprite.flip_h = true
 		
 	if jump and is_on_floor():
 		change_state(JUMP)
