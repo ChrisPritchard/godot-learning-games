@@ -34,6 +34,8 @@ func new_level():
 		spawn_rock(3)
 	$EnemyTimer.wait_time = rand_range(5, 10)
 	$EnemyTimer.start()
+	$LevelupSound.play()
+	$Music.play()
 		
 func spawn_rock(size, pos=null, vel=null):
 	if !pos:
@@ -68,6 +70,7 @@ func _on_Player_shoot(bullet, pos, dir):
 	add_child(b)
 
 func _on_Rock_exploded(size, radius, pos, vel):
+	$ExplodeSound.play()
 	if size <= 1:
 		return
 	for offset in [-1, 1]:
@@ -79,6 +82,7 @@ func _on_Rock_exploded(size, radius, pos, vel):
 func game_over():
 	playing = false
 	$HUD.game_over()
+	$Music.stop()
 
 func _on_Player_lives_changed():
 	$HUD.update_lives($Player.lives)

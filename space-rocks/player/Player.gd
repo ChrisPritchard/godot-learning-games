@@ -51,6 +51,7 @@ func change_state(new_state):
 		DEAD:
 			$CollisionShape2D.set_deferred("disabled", true)
 			$Sprite.hide()
+			$EngineSound.stop()
 			linear_velocity = Vector2()
 			emit_signal("dead")
 			
@@ -65,6 +66,10 @@ func get_input():
 		return
 	if Input.is_action_pressed("thrust"):
 		thrust = Vector2(engine_power, 0)
+		if not $EngineSound.playing:
+			$EngineSound.play()
+	else:
+		$EngineSound.stop()
 	rotation_dir = 0
 	if Input.is_action_pressed("rotate_right"):
 		rotation_dir += 1
@@ -79,6 +84,7 @@ func shoot():
 	emit_signal("shoot", Bullet, $Muzzle.global_position, rotation)
 	can_shoot = false
 	$GunTimer.start()
+	$LaserSound.play()
 		
 func _integrate_forces(physics_state):
 	set_applied_force(thrust.rotated(rotation))

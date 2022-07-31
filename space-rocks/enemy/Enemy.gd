@@ -23,6 +23,7 @@ func _process(delta):
 		queue_free()
 
 func _on_Explosion_animation_finished():
+	yield($ExplodeSound, "finished")
 	queue_free()
 
 func _on_GunTimer_timeout():
@@ -37,6 +38,7 @@ func shoot():
 	var dir = target.global_position - global_position
 	dir = dir.rotated(rand_range(-0.1, 0.1)).angle()
 	emit_signal("shoot", Bullet, global_position, dir)
+	$ShootSound.play()
 
 func take_damage(amount):
 	health -= amount
