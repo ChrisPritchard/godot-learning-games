@@ -61,10 +61,12 @@ func _process(_delta):
 	get_input()
 	
 func get_input():
+	$Exhaust.emitting = false
 	thrust = Vector2()
 	if state in [DEAD, INIT]:
 		return
 	if Input.is_action_pressed("thrust"):
+		$Exhaust.emitting = true
 		thrust = Vector2(engine_power, 0)
 		if not $EngineSound.playing:
 			$EngineSound.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/player_ship.png" type="Texture" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
@@ -8,6 +8,32 @@
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 38.0
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.304348, 0.664596, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.982521, 0.691406, 1, 0.75, 0.736891, 0.518555, 1, 1, 0.662109, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.98913, 0.0193182 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 5, 1 )
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 400.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 8.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
 
 [node name="Player" type="RigidBody2D"]
 contacts_reported = 1
@@ -43,6 +69,14 @@ stream = ExtResource( 4 )
 
 [node name="EngineSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
+[node name="Exhaust" type="Particles2D" parent="."]
+show_behind_parent = true
+position = Vector2( -28, 0 )
+rotation = -3.14159
+amount = 25
+lifetime = 0.1
+process_material = SubResource( 6 )
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
