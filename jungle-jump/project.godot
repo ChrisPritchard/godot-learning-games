@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="jungle-jump"
+run/main_scene="res://player/Player.tscn"
 config/icon="res://icon.png"
 
 [display]
