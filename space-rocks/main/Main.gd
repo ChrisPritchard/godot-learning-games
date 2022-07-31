@@ -64,9 +64,15 @@ func _process(_delta):
 	if playing and $Rocks.get_child_count() == 0:
 		new_level()
 
+func _on_Enemy_shoot(bullet, pos, dir):
+	var b = bullet.instance()
+	b.start(pos, dir)
+	add_child(b)
+
 func _on_Player_shoot(bullet, pos, dir):
 	var b = bullet.instance()
 	b.start(pos, dir)
+	b.connect("rock_hit", self, "_on_Rock_hit")
 	add_child(b)
 
 func _on_Rock_exploded(size, radius, pos, vel):
@@ -91,6 +97,13 @@ func _on_EnemyTimer_timeout():
 	var e = Enemy.instance()
 	add_child(e)
 	e.target = $Player
-	e.connect("shoot", self, "_on_Player_shoot")
+	e.connect("shoot", self, "_on_Enemy_shoot")
 	$EnemyTimer.wait_time = rand_range(20, 40)
 	$EnemyTimer.start()
+
+func _on_Player_shields_changed(value):
+	$HUD.update_shield(value)
+	
+func _on_Rock_hit():
+	score += 1
+	$HUD.update_score(score)

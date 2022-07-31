@@ -2,6 +2,7 @@ extends RigidBody2D
 
 signal shoot
 signal lives_changed
+signal shields_changed
 signal dead
 
 enum {INIT, ALIVE, INVULNERABLE, DEAD}
@@ -9,6 +10,8 @@ var state = null
 
 export (int) var engine_power = 500
 export (int) var spin_power = 15000
+export (int) var max_shield = 100
+export (int) var shield_regen = 5
 
 var thrust = Vector2()
 var rotation_dir = 0
@@ -21,10 +24,7 @@ export (float) var fire_rate = 0.25
 
 var can_shoot = true
 var lives = 0 setget set_lives
-
-func set_lives(value):
-	lives = value
-	emit_signal("lives_changed")
+var shield = 0 setget set_shield
 
 func _ready():
 	change_state(ALIVE)
@@ -35,6 +35,7 @@ func start():
 	$Sprite.show()
 	self.lives = 3
 	change_state(ALIVE)
+	self.shield = max_shield
 
 func change_state(new_state):
 	match new_state:
@@ -57,8 +58,10 @@ func change_state(new_state):
 			
 	state = new_state
 
-func _process(_delta):
+func _process(delta):
 	get_input()
+	if lives > 0:
+		self.shield += shield_regen * delta
 	
 func get_input():
 	$Exhaust.emitting = false
@@ -116,6 +119,18 @@ func _on_Player_body_entered(body):
 		body.explode()
 		$Explosion.show()
 		$Explosion.play()
+		self.shield -= body.size * 25
+
+func set_lives(value):
+	lives = value
+	emit_signal("lives_changed")
+
+func set_shield(value):
+	if value > max_shield:
+		value = max_shield
+	shield = value
+	emit_signal("shields_changed", shield)
+	if shield <= 0:
 		self.lives -= 1
 		if lives <= 0:
 			change_state(DEAD)
