@@ -89,6 +89,13 @@ func _physics_process(delta):
 		var collision = get_slide_collision(idx)
 		if collision.collider.name == "Danger":
 			hurt()
+		if collision.collider.is_in_group("enemies"):
+			var player_feet = (position + $CollisionShape2D.shape.extents).y
+			if player_feet < collision.collider.position.y:
+				collision.collider.take_damage()
+				velocity.y = -80
+			else:
+				hurt()
 	if state == JUMP and is_on_floor():
 		change_state(IDLE)
 	if state == JUMP and velocity.y > 0:
