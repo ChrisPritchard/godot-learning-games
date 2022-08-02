@@ -83,6 +83,12 @@ func _physics_process(delta):
 		anim = new_anim
 		$AnimatedSprite.play(anim)
 	velocity = move_and_slide(velocity, Vector2(0, -1))
+	if state == HURT:
+		return
+	for idx in range(get_slide_count()):
+		var collision = get_slide_collision(idx)
+		if collision.collider.name == "Danger":
+			hurt()
 	if state == JUMP and is_on_floor():
 		change_state(IDLE)
 	if state == JUMP and velocity.y > 0:
