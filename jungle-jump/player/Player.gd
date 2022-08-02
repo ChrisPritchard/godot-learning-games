@@ -35,8 +35,8 @@ func change_state(new_state):
 		HURT:
 			print("player hurt - life %s" % life)
 			new_anim = "hurt"
-			velocity.y = -200
-			velocity.x = -100 * sign(velocity.x)
+			velocity.y = -80
+			velocity.x = -40 * sign(velocity.x)
 			life -= 1
 			emit_signal("life_changed", life)
 			yield(get_tree().create_timer(0.5), "timeout")
