@@ -33,6 +33,7 @@ func change_state(new_state):
 		RUN:
 			new_anim = "run"
 		HURT:
+			print("player hurt - life %s" % life)
 			new_anim = "hurt"
 			velocity.y = -200
 			velocity.x = -100 * sign(velocity.x)
