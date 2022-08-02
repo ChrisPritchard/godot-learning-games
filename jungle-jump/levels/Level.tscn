@@ -14,11 +14,11 @@ script = ExtResource( 5 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2( 0, -200 )
 motion_scale = Vector2( 0.2, 1 )
 motion_mirroring = Vector2( 576, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 0, -200 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 7 )
 centered = false
