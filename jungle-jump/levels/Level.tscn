@@ -1,13 +1,38 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/tilesets/tiles_spikes.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tilesets/tiles_world.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/tilesets/tiles_items.tres" type="TileSet" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/Level.gd" type="Script" id=5]
+[ext_resource path="res://assets/environment/layers/middle.png" type="Texture" id=6]
+[ext_resource path="res://assets/environment/layers/back.png" type="Texture" id=7]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 0, -200 )
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 7 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.6, 1 )
+motion_mirroring = Vector2( 880, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 880, 368 )
 
 [node name="World" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )

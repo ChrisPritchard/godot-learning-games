@@ -19,14 +19,6 @@ region = Rect2( 387, 0, 43, 42 )
 atlas = ExtResource( 1 )
 region = Rect2( 430, 0, 43, 42 )
 
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 1 )
-region = Rect2( 215, 0, 43, 42 )
-
-[sub_resource type="AtlasTexture" id=24]
-atlas = ExtResource( 1 )
-region = Rect2( 258, 0, 43, 42 )
-
 [sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 1 )
 region = Rect2( 473, 0, 43, 42 )
@@ -59,16 +51,19 @@ region = Rect2( 774, 0, 43, 42 )
 atlas = ExtResource( 1 )
 region = Rect2( 516, 0, 43, 42 )
 
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 1 )
+region = Rect2( 215, 0, 43, 42 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 1 )
+region = Rect2( 258, 0, 43, 42 )
+
 [sub_resource type="SpriteFrames" id=17]
 animations = [ {
 "frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
 "loop": true,
 "name": "idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 23 ), SubResource( 24 ) ],
-"loop": true,
-"name": "hurt",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 32 ) ],
@@ -84,6 +79,11 @@ animations = [ {
 "frames": [ SubResource( 31 ) ],
 "loop": false,
 "name": "jump_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "hurt",
 "speed": 5.0
 } ]
 
@@ -101,6 +101,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 17 )
 animation = "idle"
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -110,3 +111,4 @@ shape = SubResource( 18 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.4, 0.4 )
+limit_top = -200
