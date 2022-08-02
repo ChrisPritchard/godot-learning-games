@@ -1,5 +1,10 @@
 extends KinematicBody2D
 
+signal life_changed
+signal dead
+
+var life
+
 export (int) var run_speed = 100
 export (int) var jump_speed = -100
 export (int) var gravity = 100
@@ -9,6 +14,13 @@ var state
 var anim
 var new_anim
 var velocity = Vector2()
+
+func start(pos):
+	position = pos
+	life = 3
+	emit_signal("life_changed", life)
+	show()
+	change_state(IDLE)
 
 func ready():
 	change_state(IDLE)
@@ -22,9 +34,18 @@ func change_state(new_state):
 			new_anim = "run"
 		HURT:
 			new_anim = "hurt"
+			velocity.y = -200
+			velocity.x = -100 * sign(velocity.x)
+			life -= 1
+			emit_signal("life_changed", life)
+			yield(get_tree().create_timer(0.5), "timeout")
+			change_state(IDLE)
+			if life <= 0:
+				change_state(DEAD)
 		JUMP:
 			new_anim = "jump_up"
 		DEAD:
+			emit_signal("dead")
 			hide()
 
 func get_input():
@@ -65,3 +86,7 @@ func _physics_process(delta):
 		change_state(IDLE)
 	if state == JUMP and velocity.y > 0:
 		new_anim = "jump_down"
+
+func hurt():
+	if state != HURT:
+		change_state(HURT)
