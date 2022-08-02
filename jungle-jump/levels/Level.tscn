@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/tilesets/tiles_spikes.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tilesets/tiles_world.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://levels/Level.gd" type="Script" id=5]
 [ext_resource path="res://assets/environment/layers/middle.png" type="Texture" id=6]
 [ext_resource path="res://assets/environment/layers/back.png" type="Texture" id=7]
+[ext_resource path="res://ui/HUD.tscn" type="PackedScene" id=8]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
@@ -58,3 +59,10 @@ format = 1
 visible = false
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 8 )]
+
+[connection signal="score_changed" from="." to="CanvasLayer/HUD" method="_on_score_changed"]
+[connection signal="life_changed" from="Player" to="CanvasLayer/HUD" method="_on_Player_life_changed"]
