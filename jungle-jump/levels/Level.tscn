@@ -65,4 +65,5 @@ visible = false
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 8 )]
 
 [connection signal="score_changed" from="." to="CanvasLayer/HUD" method="_on_score_changed"]
+[connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="life_changed" from="Player" to="CanvasLayer/HUD" method="_on_Player_life_changed"]

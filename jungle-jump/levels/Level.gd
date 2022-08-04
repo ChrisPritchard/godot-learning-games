@@ -31,7 +31,7 @@ func _on_Collectible_pickup():
 	
 func _on_Player_dead():
 	print("player dead")
-	pass
+	GameState.restart()
 	
 func set_camera_limits():
 	var map_size = $World.get_used_rect()
