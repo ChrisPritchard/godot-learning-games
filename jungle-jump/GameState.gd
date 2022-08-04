@@ -13,3 +13,5 @@ func next_level():
 	current_level += 1
 	if current_level <= num_levels:
 		get_tree().reload_current_scene()
+	else:
+		restart()

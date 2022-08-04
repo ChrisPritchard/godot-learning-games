@@ -4,7 +4,7 @@ signal score_changed
 var score
 
 onready var pickups = $Pickups
-var Collectible = preload("res://collectible/Collectible.tscn")
+var Collectible = preload("res://items/Collectible.tscn")
 
 func _ready():
 	score = 0
@@ -38,3 +38,6 @@ func set_camera_limits():
 	var cell_size = $World.cell_size
 	$Player/Camera2D.limit_left = (map_size.position.x - 5) * cell_size.x
 	$Player/Camera2D.limit_right = (map_size.end.x + 5) * cell_size.x
+
+func _on_Door_body_entered(body):
+	GameState.next_level()
