@@ -15,6 +15,9 @@ var anim
 var new_anim
 var velocity = Vector2()
 
+var max_jumps = 2
+var jump_count = 0
+
 func start(pos):
 	position = pos
 	life = 3
@@ -46,6 +49,7 @@ func change_state(new_state):
 				change_state(DEAD)
 		JUMP:
 			new_anim = "jump_up"
+			jump_count = 1
 		DEAD:
 			emit_signal("dead")
 			hide()
@@ -66,7 +70,12 @@ func get_input():
 		velocity.x -= run_speed
 		$AnimatedSprite.flip_h = true
 		
-	if jump and is_on_floor():
+	if jump and state == JUMP and jump_count < max_jumps:
+		$JumpSound.play()
+		new_anim = "jump_up"
+		velocity.y = jump_speed / 1.5
+		jump_count += 1
+	elif jump and is_on_floor():
 		$JumpSound.play()
 		change_state(JUMP)
 		velocity.y = jump_speed
@@ -79,6 +88,10 @@ func get_input():
 		change_state(JUMP)
 	
 func _physics_process(delta):
+	if position.y > 1000:
+		change_state(DEAD)
+		return
+	
 	velocity.y += gravity * delta
 	get_input()
 	if new_anim != anim:
