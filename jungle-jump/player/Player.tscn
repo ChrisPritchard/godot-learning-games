@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/player_sheet.png" type="Texture" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
@@ -92,6 +92,27 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 5, 10 )
 
+[sub_resource type="Gradient" id=33]
+offsets = PoolRealArray( 0.434783, 0.981366 )
+colors = PoolColorArray( 0.870588, 0.866667, 0.686275, 1, 0.682353, 0.682353, 0.682353, 0 )
+
+[sub_resource type="GradientTexture" id=34]
+gradient = SubResource( 33 )
+
+[sub_resource type="ParticlesMaterial" id=35]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 6, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+scale_random = 1.0
+color = Color( 0.847059, 0.827451, 0.721569, 1 )
+color_ramp = SubResource( 34 )
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 13
@@ -121,3 +142,15 @@ volume_db = -5.0
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
+
+[node name="Dust" type="Particles2D" parent="."]
+position = Vector2( -2, 15 )
+rotation = -1.5708
+emitting = false
+amount = 20
+lifetime = 0.45
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.7
+local_coords = false
+process_material = SubResource( 35 )
