@@ -33,6 +33,7 @@ func change_state(new_state):
 		RUN:
 			new_anim = "run"
 		HURT:
+			$HurtSound.play()
 			print("player hurt - life %s" % life)
 			new_anim = "hurt"
 			velocity.y = -80
@@ -66,6 +67,7 @@ func get_input():
 		$AnimatedSprite.flip_h = true
 		
 	if jump and is_on_floor():
+		$JumpSound.play()
 		change_state(JUMP)
 		velocity.y = jump_speed
 		

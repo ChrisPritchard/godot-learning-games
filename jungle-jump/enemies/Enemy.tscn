@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/sprites/opossum.png" type="Texture" id=1]
 [ext_resource path="res://enemies/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/enemy-death.png" type="Texture" id=3]
+[ext_resource path="res://assets/audio/enemy_hit.ogg" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -107,5 +108,9 @@ autoplay = "walk"
 anims/RESET = SubResource( 2 )
 anims/death = SubResource( 4 )
 anims/walk = SubResource( 3 )
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

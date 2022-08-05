@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/Kenney Thick.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/environment/layers/middle.png" type="Texture" id=2]
 [ext_resource path="res://assets/environment/layers/back.png" type="Texture" id=3]
 [ext_resource path="res://ui/TitleScreen.gd" type="Script" id=4]
+[ext_resource path="res://assets/audio/Intro Theme.ogg" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
@@ -169,3 +170,7 @@ valign = 1
 autoplay = "anim"
 anims/RESET = SubResource( 3 )
 anims/anim = SubResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true

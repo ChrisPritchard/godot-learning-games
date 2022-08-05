@@ -27,6 +27,7 @@ func take_damage():
 	$AnimationPlayer.play("death")
 	$CollisionShape2D.set_deferred("disabled", true)
 	set_physics_process(false)
+	$HitSound.play()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "death":
