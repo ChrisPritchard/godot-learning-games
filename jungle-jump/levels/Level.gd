@@ -41,3 +41,12 @@ func set_camera_limits():
 
 func _on_Door_body_entered(body):
 	GameState.next_level()
+
+
+func _on_Ladder_body_entered(body):
+	if body.name == "Player":
+		body.is_on_ladder = true
+
+func _on_Ladder_body_exited(body):
+	if body.name == "Player":
+		body.is_on_ladder = false

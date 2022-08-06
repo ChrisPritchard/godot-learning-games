@@ -5,11 +5,12 @@ signal dead
 
 var life
 
+export (int) var climb_speed = 50
 export (int) var run_speed = 100
 export (int) var jump_speed = -100
 export (int) var gravity = 100
 
-enum {IDLE,CROUCH,RUN,JUMP,HURT,DEAD}
+enum {IDLE,CROUCH,RUN,JUMP,CLIMB,HURT,DEAD}
 var state
 var anim
 var new_anim
@@ -17,6 +18,7 @@ var velocity = Vector2()
 
 var max_jumps = 2
 var jump_count = 0
+var is_on_ladder = false
 
 func start(pos):
 	position = pos
@@ -37,6 +39,11 @@ func change_state(new_state):
 			new_anim = "crouch"
 		RUN:
 			new_anim = "run"
+		JUMP:
+			new_anim = "jump_up"
+			jump_count = 1
+		CLIMB:
+			new_anim = "climb"
 		HURT:
 			$HurtSound.play()
 			print("player hurt - life %s" % life)
@@ -49,9 +56,6 @@ func change_state(new_state):
 			change_state(IDLE)
 			if life <= 0:
 				change_state(DEAD)
-		JUMP:
-			new_anim = "jump_up"
-			jump_count = 1
 		DEAD:
 			emit_signal("dead")
 			hide()
@@ -64,6 +68,7 @@ func get_input():
 	var left = Input.is_action_pressed("left")
 	var down = Input.is_action_pressed("down")
 	var jump = Input.is_action_just_pressed("jump")
+	var climb = Input.is_action_pressed("climb")
 	
 	velocity.x = 0
 	if right:
@@ -75,6 +80,19 @@ func get_input():
 	if down and is_on_floor():
 		change_state(CROUCH)
 	if !down and state == CROUCH:
+		change_state(IDLE)
+		
+	if climb and state != CLIMB and is_on_ladder:
+		change_state(CLIMB)
+	if state == CLIMB:
+		if climb:
+			velocity.y = -climb_speed
+		elif down:
+			velocity.y = climb_speed
+		else:
+			velocity.y = 0
+			$AnimatedSprite.play("climb")
+	if state == CLIMB and not is_on_ladder:
 		change_state(IDLE)
 		
 	if jump and state == JUMP and jump_count < max_jumps:
@@ -99,7 +117,9 @@ func _physics_process(delta):
 		change_state(DEAD)
 		return
 	
-	velocity.y += gravity * delta
+	if state != CLIMB:
+		velocity.y += gravity * delta
+		
 	get_input()
 	if new_anim != anim:
 		anim = new_anim
