@@ -9,7 +9,7 @@ export (int) var run_speed = 100
 export (int) var jump_speed = -100
 export (int) var gravity = 100
 
-enum {IDLE,RUN,JUMP,HURT,DEAD}
+enum {IDLE,CROUCH,RUN,JUMP,HURT,DEAD}
 var state
 var anim
 var new_anim
@@ -33,6 +33,8 @@ func change_state(new_state):
 	match state:
 		IDLE:
 			new_anim = "idle"
+		CROUCH:
+			new_anim = "crouch"
 		RUN:
 			new_anim = "run"
 		HURT:
@@ -60,6 +62,7 @@ func get_input():
 	
 	var right = Input.is_action_pressed("right")
 	var left = Input.is_action_pressed("left")
+	var down = Input.is_action_pressed("down")
 	var jump = Input.is_action_just_pressed("jump")
 	
 	velocity.x = 0
@@ -69,6 +72,10 @@ func get_input():
 	if left:
 		velocity.x -= run_speed
 		$AnimatedSprite.flip_h = true
+	if down and is_on_floor():
+		change_state(CROUCH)
+	if !down and state == CROUCH:
+		change_state(IDLE)
 		
 	if jump and state == JUMP and jump_count < max_jumps:
 		$JumpSound.play()
@@ -80,7 +87,7 @@ func get_input():
 		change_state(JUMP)
 		velocity.y = jump_speed
 		
-	if state == IDLE and velocity.x != 0:
+	if state in [IDLE,CROUCH] and velocity.x != 0:
 		change_state(RUN)
 	if state == RUN and velocity.x == 0:
 		change_state(IDLE)
