@@ -26,7 +26,7 @@ Core mechanics:
 
 so id say creating a scene for an individual tile might be useful, with move down/left/right (tween moves), rotate (jump?), flash and remove
 
-    area2d
+    node
         sprite
             - the colour shift of this could be changed
         animationplayer
@@ -49,6 +49,16 @@ the current shape would need a reference to the state of the board. alternativel
 board scene would have the state, would initiate the current shape, track the next shape to go, do the line calculations, and emit signals about scores and next shape
 
 main scene would have board, ui for next shape, ui for showing scores and levels etc.
+
+### physics and tying sprites to positions
+
+    using physics for detections is probably overkill. can just calculate new positions, and see if those positions are occupied in the grid
+    alternatively physics *could* be used, as that would mean the 'current shape' object wouldnt need a copy of the grid for detection purposes...
+
+    the second question is how would lines be calculated. this could be done with a grid map, or it could be done with a 'line checker', which uses casts to detect if all spaces are occupied
+    that seems overkill though - also moving tiles down using physics would be tricky, best done with a grid
+
+    maybe use a grid, a map of point to cell scene. could pass to current a checker function (higher level function equiv). no collisions. sprites moved to new places via their tweening move function?
 
 ## Shapes and rotations
 
