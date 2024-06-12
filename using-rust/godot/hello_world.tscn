@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj30b0jg6fdsd"]
+
+[ext_resource type="Texture2D" uid="uid://dg6ify0pyje5m" path="res://icon.svg" id="1_vh1c0"]
+
+[node name="RustPlayer" type="Player"]
+position = Vector2(330, 271)
+texture = ExtResource("1_vh1c0")

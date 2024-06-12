@@ -1,0 +1,10 @@
+[configuration]
+entry_symbol = "gdext_rust_init"
+compatibility_minimum = 4.1
+reloadable = true
+
+[libraries]
+linux.debug.x86_64 =     "res://../rust/target/debug/using_rust.so"
+linux.release.x86_64 =   "res://../rust/target/release/using_rust.so"
+windows.debug.x86_64 =   "res://../rust/target/debug/using_rust.dll"
+windows.release.x86_64 = "res://../rust/target/release/using_rust.dll"
