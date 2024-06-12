@@ -48,19 +48,11 @@ func update_direction():
 
 func update_animation(velocity):
 	var animation = "up"
-	
 	if direction == 1 or direction == 3:
 		animation = "walk"
-	if direction == 0 or direction == 1: 
-		$AnimatedSprite2D.flip_h = false
-		$AnimatedSprite2D.flip_v = false
-	elif direction == 2:
-		$AnimatedSprite2D.flip_h = false
-		$AnimatedSprite2D.flip_v = true
-	else:
-		$AnimatedSprite2D.flip_h = true
-		$AnimatedSprite2D.flip_v = false
-		
+	
+	$AnimatedSprite2D.flip_v = direction == 2
+	$AnimatedSprite2D.flip_h = direction == 3
 	$AnimatedSprite2D.play(animation)
 
 func _on_body_entered(body):
