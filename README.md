@@ -6,9 +6,7 @@ In the repo root, these are godot 4 projects built when I came back to the engin
 
 - [using-rust](./using-rust/) is the hello-world demo of [godot-rust](https://godot-rust.github.io/), a set of rust libraries that allow use of rust as a scripting language. While a bit of a pain to set up, scripts built in such a way (binding to the GDExtension api) can run much faster than GDScript or C#, and so its a good candidate for code that needs to belt away, e.g. AI or other computationally intensive stuff.
 
-- [(gd4) dodge-the-creeps-gd](./dodge-the-creeps-gd/), the first 2d game tutorial in the docs, done again but more independently by me in gd4. in gdscript
-
-- [(gd4) dodge-the-creeps-rust](./dodge-the-creeps-rust/), done again, but without following the tutorial and in rust, as a (small) test in actually using the external language for a real project
+- [(gd4) dodge-the-creeps](./dodge-the-creeps-gd/), the first 2d game tutorial in the docs, done again but more independently by me in gd4. in gdscript
 
 ## Godot 3 Project Details
 
