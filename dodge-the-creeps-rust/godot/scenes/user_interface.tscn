@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://dac32022w6hpk"]
+
+[ext_resource type="FontFile" uid="uid://be7i7sao6g5y3" path="res://assets/fonts/Xolonium-Regular.ttf" id="1_onnur"]
+
+[node name="UserInterface" type="UserInterface"]
+
+[node name="Score" type="Label" parent="."]
+offset_left = 227.0
+offset_top = 8.0
+offset_right = 272.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("1_onnur")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="Message" type="Label" parent="."]
+offset_left = 44.0
+offset_top = 297.0
+offset_right = 459.0
+offset_bottom = 456.0
+theme_override_fonts/font = ExtResource("1_onnur")
+theme_override_font_sizes/font_size = 64
+text = "Dodge the Creeps!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 104.0
+offset_top = 646.0
+offset_right = 389.0
+offset_bottom = 747.0
+theme_override_fonts/font = ExtResource("1_onnur")
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
