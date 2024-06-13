@@ -6,7 +6,7 @@
 radius = 26.0
 height = 62.0
 
-[node name="Player" type="Player"]
+[node name="Player" type="Area2D"]
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
